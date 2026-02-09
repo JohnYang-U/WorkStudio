@@ -1,8 +1,8 @@
 <template>
   <el-menu
-    :default-active="activeMenu"
+    :default-active="$route.path"
+    :router="true"
     class="sidebar-menu"
-    @select="handleMenuSelect"
   >
     <div class="sidebar-header">
       <el-icon class="logo-icon"><Document /></el-icon>
@@ -26,38 +26,52 @@
 
     <div class="menu-section">
       <div class="section-title">菜单</div>
-      <el-menu-item index="dashboard">
-        <el-icon><DataBoard /></el-icon>
-        <span>仪表盘</span>
-      </el-menu-item>
-      <el-menu-item index="tasks">
-        <el-icon><List /></el-icon>
-        <span>任务列表</span>
-      </el-menu-item>
-      <el-menu-item index="macros">
-        <el-icon><MagicStick /></el-icon>
-        <span>宏管理</span>
-      </el-menu-item>
-      <el-menu-item index="scripts">
-        <el-icon><DocumentCopy /></el-icon>
-        <span>脚本编辑器</span>
-      </el-menu-item>
-      <el-menu-item index="templates">
-        <el-icon><Collection /></el-icon>
-        <span>模板库</span>
-      </el-menu-item>
+      <router-link to="/dashboard">
+        <el-menu-item index="/dashboard">
+          <el-icon><DataBoard /></el-icon>
+          <span>仪表盘</span>
+        </el-menu-item>
+      </router-link>
+      <router-link to="/tasks">
+        <el-menu-item index="/tasks">
+          <el-icon><List /></el-icon>
+          <span>任务列表</span>
+        </el-menu-item>
+      </router-link>
+      <router-link to="/macros">
+        <el-menu-item index="/macros">
+          <el-icon><MagicStick /></el-icon>
+          <span>宏管理</span>
+        </el-menu-item>
+      </router-link>
+      <router-link to="/scripts">
+        <el-menu-item index="/scripts">
+          <el-icon><DocumentCopy /></el-icon>
+          <span>脚本编辑器</span>
+        </el-menu-item>
+      </router-link>
+      <router-link to="/templates">
+        <el-menu-item index="/templates">
+          <el-icon><Collection /></el-icon>
+          <span>模板库</span>
+        </el-menu-item>
+      </router-link>
     </div>
 
     <div class="menu-section">
       <div class="section-title">设置</div>
-      <el-menu-item index="settings">
-        <el-icon><Setting /></el-icon>
-        <span>系统设置</span>
-      </el-menu-item>
-      <el-menu-item index="help">
-        <el-icon><QuestionFilled /></el-icon>
-        <span>帮助中心</span>
-      </el-menu-item>
+      <router-link to="/settings">
+        <el-menu-item index="/settings">
+          <el-icon><Setting /></el-icon>
+          <span>系统设置</span>
+        </el-menu-item>
+      </router-link>
+      <router-link to="/help">
+        <el-menu-item index="/help">
+          <el-icon><QuestionFilled /></el-icon>
+          <span>帮助中心</span>
+        </el-menu-item>
+      </router-link>
     </div>
 
     <div class="recent-section">
@@ -83,12 +97,6 @@
 <script>
 export default {
   name: 'Sidebar',
-  props: {
-    activeMenu: {
-      type: String,
-      default: 'dashboard'
-    }
-  },
   data() {
     return {
       searchQuery: '',
@@ -101,10 +109,6 @@ export default {
     }
   },
   methods: {
-    handleMenuSelect(index) {
-      this.activeMenu = index
-      this.$emit('menu-change', index)
-    },
     handleRecentClick(item) {
       this.$emit('recent-click', item)
     }

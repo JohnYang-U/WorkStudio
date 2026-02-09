@@ -2,12 +2,10 @@
   <el-config-provider :locale="zhCn">
     <div id="app">
       <div class="app-container">
-        <Sidebar
-          class="sidebar"
-          :active-menu="currentView"
-          @menu-change="handleMenuChange"
-        />
-        <ContentArea class="content" :current-view="currentView" />
+        <Sidebar class="sidebar" />
+        <div class="content">
+          <router-view />
+        </div>
       </div>
     </div>
   </el-config-provider>
@@ -17,24 +15,12 @@
 import { ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import Sidebar from './components/Sidebar.vue'
-import ContentArea from './components/ContentArea.vue'
 
 export default {
   name: 'App',
   components: {
     ElConfigProvider,
-    Sidebar,
-    ContentArea
-  },
-  data() {
-    return {
-      currentView: 'dashboard'
-    }
-  },
-  methods: {
-    handleMenuChange(viewName) {
-      this.currentView = viewName
-    }
+    Sidebar
   }
 }
 </script>
