@@ -18,10 +18,10 @@ const routes = [
     meta: { title: '任务列表', icon: 'List' }
   },
   {
-    path: '/macros',
-    name: 'Macros',
-    component: () => import('../views/Macros.vue'),
-    meta: { title: '宏管理', icon: 'MagicStick' }
+    path: '/macrostool',
+    name: 'MacrosTool',
+    component: () => import('../views/MacrosTool.vue'),
+    meta: { title: '工具管理', icon: 'MagicStick' }
   },
   {
     path: '/scripts',

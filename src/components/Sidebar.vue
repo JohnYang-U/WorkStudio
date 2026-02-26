@@ -38,10 +38,10 @@
           <span>任务列表</span>
         </el-menu-item>
       </router-link>
-      <router-link to="/macros">
-        <el-menu-item index="/macros">
+      <router-link to="/macrostool">
+        <el-menu-item index="/macrostool">
           <el-icon><MagicStick /></el-icon>
-          <span>宏管理</span>
+          <span>工具管理</span>
         </el-menu-item>
       </router-link>
       <router-link to="/scripts">

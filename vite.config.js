@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [vue()],
   root: './',
   build: {
+     sourcemap: true, // 确保启用 Source Map
     outDir: 'dist',
     assetsDir: 'assets',
     rollupOptions: {
@@ -17,7 +18,8 @@ export default defineConfig({
   server: {
     port: 5173,
     open: true,
-    cors: true
+    cors: true,
+    sourcemap: true, // 开发模式下启用 Source Map
   },
   clearScreen: false
 })

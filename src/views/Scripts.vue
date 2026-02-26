@@ -11,24 +11,61 @@
         </button>
       </div>
     </div>
+    <div class="file-input">
+      <input type="text" v-model="filePath" placeholder="选择文件..." />
+      <button class="btn btn-primary" @click="selectFile">选择文件</button>
+    </div>
     <div class="empty-state">
       <div class="empty-icon">📝</div>
       <h3>脚本编辑器</h3>
       <p>编写和编辑自动化脚本</p>
       <button class="btn btn-primary" @click="createScript">创建第一个脚本</button>
     </div>
+    
   </div>
 </template>
 
 <script>
 export default {
   name: 'Scripts',
+  data() {
+    return {
+      filePath: ''
+    };
+  },
   methods: {
     createScript() {
-      alert('创建新脚本')
+      alert('创建新脚本');
+    },
+    selectFile() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.xml'; // 限制文件类型为 XML
+  input.onchange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const xmlContent = reader.result; // 获取 XML 文件内容
+        this.parseXML(xmlContent); // 调用解析方法
+      };
+      reader.readAsText(file); // 以文本形式读取文件内容
     }
+  };
+  input.click();
+},
+parseXML(xmlContent) {
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(xmlContent, 'application/xml');
+  console.log(xmlDoc); // 输出解析后的 XML DOM 对象
+  // 在这里操作 XML 数据，例如获取某些节点的值
+  const exampleNode = xmlDoc.getElementsByTagName('example')[0];
+  if (exampleNode) {
+    console.log('Example Node Value:', exampleNode.textContent);
   }
 }
+  }
+};
 </script>
 
 <style scoped>
@@ -122,6 +159,21 @@ export default {
   font-size: 16px;
   color: #6b7280;
   margin-bottom: 24px;
+}
+
+.file-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.file-input input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
 ::-webkit-scrollbar {

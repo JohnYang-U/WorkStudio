@@ -2,31 +2,37 @@
   <div class="view-macros">
     <div class="header">
       <div class="header-left">
-        <h1 class="title">宏管理</h1>
-        <p class="breadcrumb">首页 / 宏管理</p>
+        <h1 class="title">工具管理</h1>
+        <p class="breadcrumb">首页 / 工具管理</p>
       </div>
       <div class="header-right">
         <button class="btn btn-primary" @click="createMacro">
-          <span>+</span> 新建宏
+          <span>+</span> 新建工具
         </button>
       </div>
     </div>
     <div class="empty-state">
       <div class="empty-icon">✨</div>
-      <h3>宏管理</h3>
-      <p>创建和管理自动化宏命令</p>
-      <button class="btn btn-primary" @click="createMacro">创建第一个宏</button>
+      <h3>工具管理</h3>
+      <p>创建和管理自动化工具</p>
+      <button class="btn btn-primary" @click="createMacro">创建第一个工具</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Macros',
+  name: 'MacrosTool', // Updated to match the route name
   methods: {
     createMacro() {
-      alert('创建新宏')
+      alert('创建新工具')
     }
+  },
+  created() {
+    console.log('MacrosTool component has been created.')
+  },
+  mounted() {
+    console.log('MacrosTool component has been mounted.')
   }
 }
 </script>
